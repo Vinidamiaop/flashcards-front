@@ -11,7 +11,9 @@ export default function Home() {
                 </div>
                 <SubjectList/>
             </section>
-            <FloatButton link="subjects/create"/>
+            <div className=" flex items-center justify-center w-full sticky bottom-0 pointer-events-none">
+                    <FloatButton link="subjects/create"/>
+            </div>
         </>
 
     );
