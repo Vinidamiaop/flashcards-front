@@ -24,7 +24,38 @@ export async function createSubject(data) {
         });
         return await response.json();
     } catch (e) {
-        console.log(e);
+        throw {
+            status: e?.code || 500,
+            data: e?.response?.data,
+            message: e?.response?.data?.message || e.message
+        }
+    }
+}
+
+export async function updateSubject(data) {
+    try {
+        const response = await fetch(subjectBase, {
+            method: 'PUT',
+            body: JSON.stringify(data),
+            headers: {
+                "Content-Type": "Application/json"
+            }
+        });
+        return await response.json();
+    } catch (e) {
+        throw {
+            status: e?.code || 500,
+            data: e?.response?.data,
+            message: e?.response?.data?.message || e.message
+        }
+    }
+}
+
+export async function getSubjectById(subjectId) {
+    try {
+        const response = await fetch(`${subjectBase}/${subjectId}`);
+        return await response.json();
+    } catch(e) {
         throw {
             status: e?.code || 500,
             data: e?.response?.data,
