@@ -12,6 +12,7 @@ export default function QuestionsResultChart({score}) {
     const cy = 50;
     const iR = 26;
     const oR = 35;
+    const value = score;
 
     const needle = (value, data, cx, cy, iR, oR, color) => {
         let total = 0;
@@ -53,9 +54,9 @@ export default function QuestionsResultChart({score}) {
                     fill="#8884d8"
                     stroke="none"
                 >
-                    {data.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={entry.color} />
-                    ))}
+                    {data.map((entry, index) => {
+                        return <Cell key={index} fill={entry.color} className="pointer-events-none" />
+                    })}
                 </Pie>
                 { needle(score, data, cx, cy, iR, oR, '#dcd02e') }
             </PieChart>
